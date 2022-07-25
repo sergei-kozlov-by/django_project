@@ -151,11 +151,15 @@ class Book(models.Model):
     )
     date_of_entry = models.DateField(
         verbose_name="Date of entry",
+        auto_now=True,
+        editable=False,
         blank=True,
         null=True
     )
     date_of_modified = models.DateField(
         verbose_name="Date of modified",
+        auto_now=True,
+        editable=True,
         blank=True,
         null=True
     )

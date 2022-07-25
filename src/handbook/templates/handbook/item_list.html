@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Item list {% endblock title %}   
+{% block header %}Item list{% endblock header %}
+{% block body %}
+    <table border="1">
+        <tr><td>Name</td><td>Actions</td></tr>
+        {% for row in object_list %}
+            <tr><td><a href="{% url 'hb:author-view' row.pk %}"> {{ row.name }}</td><td><a href="{% url 'hb:author-edit' row.pk %}"> -EDIT- <a href="{% url 'hb:author-delete' row.pk %}"> -DELETE-</li></td></tr>
+        {% endfor %}    
+    </table>
+    <br><a href="{% url 'hb:author-add' %}"> Add item
+{% endblock body %}   
+  

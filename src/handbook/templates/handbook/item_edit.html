@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %} Item edit: {{ object }} {% endblock title %}   
+{% block header %}Edit item: {{ object }}{% endblock header %}
+{% block body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+    <br><input type="submit">
+{% endblock body %}  

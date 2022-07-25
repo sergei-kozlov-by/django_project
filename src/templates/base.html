@@ -3,17 +3,17 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Author add</title>
+        <title>{% block title %}{% endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <h1>Add a author</h1>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p}}
-            <br><input type="submit">
+        <hr>
+        <h1>{% block header %}{% endblock header %}</h1>
+        <hr>
+        {% block body %}{% endblock body %}
+        
         <script src="" async defer></script>
-    </body>
+        </body>
 </html>
