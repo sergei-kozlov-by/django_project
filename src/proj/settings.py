@@ -42,7 +42,14 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'handbook',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'django_bootstrap_icons',
+    'import_export',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,6 +77,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "media"
 ]
 
 WSGI_APPLICATION = 'proj.wsgi.application'
@@ -108,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Europe/Minsk'
 

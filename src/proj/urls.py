@@ -22,3 +22,4 @@ urlpatterns = [
     path('', views.HomePage.as_view()),
     path('hb/', include('handbook.urls', namespace='hb')),
 ]
+

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Item: {{ object }} {% endblock title %}   
+{% block header %}{{ object }}{% endblock header %}
+{% block body %} 
+        <b>Photo:</b> {{ object.photo }}<br>
+        <b>Price:</b> {{ object.price }}<br>
+        <b>Author:</b> {{ author }}<br>
+        <b>Serie:</b> {{ object.series }}<br>
+        <b>Genre:</b>{{ object.genre}}<br>
+        <b>Year:</b> {{ object.year}}<br>
+        <b>Pages:</b> {{ object.pages }}<br>
+        <b>Blinding:</b> {{ object.blinding }}<br>
+        <b>Format:</b> {{ object.format }}<br>
+        <b>ISBN:</b> {{ object.isbn }}<br>
+        <b>Weight:</b> {{ object.weight }}<br>
+        <b>Age of restrictions:</b> {{ object.age_restrictions }}<br>
+        <b>Publisher:</b> {{ object.publisher }}<br>
+        <b>Quantity in stock:</b> {{ object.quantity_in_stock }}<br>
+        <b>Active for order:</b> {{ object.active }}<br>
+        <b>Rating:</b> {{ object.rating }}<br>
+        <b>Date of entry:</b> {{ object.date_of_entry }}<br>
+        <b>Date of last modified:</b> {{ object.date_of_modified }}<br>
+        <b>Description:</b> {{ object.description }}<br>
+{% endblock body %}  

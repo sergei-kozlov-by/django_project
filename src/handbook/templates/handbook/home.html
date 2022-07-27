@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
-{% block title %} Home page {% endblock title %}   
+{% block title %} Home Page{% endblock title %}
+{% block header %}{% endblock header %}   
 {% block body %}
-    <h1>Home Page</h1>       
+<div class="row row-cols-3 row-cols-md-3 g-4">
+{% for book in book_list %}
+<div class="card" style="width: 18rem;">
+    <img src="{{ book.image }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><a href="{% url 'hb:book-view' book.pk %}">{{book.name}}</a></h5>
+      <p class="card-text">Author :{{ book.author }}</p>
+      <p class="card-text">Genre: {{ book.genre }}</p>
+      <p class="card-text">Publisher: {{ book.publisher }}</p>
+      <a href="#" class="btn btn-primary">Buy now</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
 {% endblock body %}   
 

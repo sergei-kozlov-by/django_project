@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %} Item edit: {{ object }} {% endblock title %}   
 {% block header %}Edit item: {{ object }}{% endblock header %}
-{% block body %}
+{% block body %} 
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p}}
-    <br><input type="submit">
+        {{ form|crispy }}
+    <br><input type="submit" class="btn btn-primary">
 {% endblock body %}  

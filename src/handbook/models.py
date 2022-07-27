@@ -66,11 +66,15 @@ class Book(models.Model):
         max_length=50,
     )
     photo = models.ImageField(
-        verbose_name="Photo"
+        verbose_name="Photo",
+        height_field=None,
+        width_field=None,
+        max_length=100
+        
     )
     price = models.IntegerField(
         verbose_name="Price",
-         blank=True,
+        blank=True,
         null=True
     )
     author  = models.ManyToManyField(
@@ -82,7 +86,9 @@ class Book(models.Model):
         Serie,
         on_delete=models.PROTECT,
         verbose_name="Serie",
-        related_name="series"
+        related_name="series",
+        blank=True,
+        null=True
     )
     genre = models.ManyToManyField(
         Genre,
@@ -151,7 +157,7 @@ class Book(models.Model):
     )
     date_of_entry = models.DateField(
         verbose_name="Date of entry",
-        auto_now=True,
+        auto_now_add=True,
         editable=False,
         blank=True,
         null=True

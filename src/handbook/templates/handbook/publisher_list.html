@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Item list {% endblock title %}   
+{% block header %}Item list{% endblock header %}
+{% block body %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in object_list %}
+            <tr>
+                <td>{{ row.pk }}</td>
+                <td><a href="{% url 'hb:publisher-view' row.pk %}"> {{ row.name }}</td>
+                <td><a href="{% url 'hb:publisher-edit' row.pk %}"> <i class="bi bi-pencil-square"></i>Edit<a href="{% url 'hb:publisher-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><a href="{% url 'hb:publisher-add' %}"> <button type="button" class="btn btn-primary">Add publisher</button>
+{% endblock body %}
