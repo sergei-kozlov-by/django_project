@@ -129,9 +129,9 @@ env.bak/
 venv.bak/
 
 #Static files
-static/
-media/
-settings.py
+#static/
+#media/
+#settings.py
 local_vars.py
 
 # Spyder project settings
