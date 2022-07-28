@@ -66,6 +66,7 @@ class Book(models.Model):
         max_length=50,
     )
     photo = models.ImageField(
+        upload_to='src/static/images',
         verbose_name="Photo",
         height_field=None,
         width_field=None,
@@ -86,7 +87,7 @@ class Book(models.Model):
         Serie,
         on_delete=models.PROTECT,
         verbose_name="Serie",
-        related_name="series",
+        related_name="serie",
         blank=True,
         null=True
     )

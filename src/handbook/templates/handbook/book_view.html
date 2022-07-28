@@ -5,9 +5,9 @@
 {% block body %} 
         <b>Photo:</b> {{ object.photo }}<br>
         <b>Price:</b> {{ object.price }}<br>
-        <b>Author:</b> {{ author }}<br>
-        <b>Serie:</b> {{ object.series }}<br>
-        <b>Genre:</b>{{ object.genre}}<br>
+        <b>Author:</b> {% for author in object.author.all %}{{author.name}}{%endfor%}<br>
+        <b>Serie:</b> {{ object.serie }}<br>
+        <b>Genre: </b>{% for genre in object.genre.all %}{{genre.name}}{%endfor%}<br>
         <b>Year:</b> {{ object.year}}<br>
         <b>Pages:</b> {{ object.pages }}<br>
         <b>Blinding:</b> {{ object.blinding }}<br>

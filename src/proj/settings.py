@@ -81,7 +81,6 @@ TEMPLATES = [
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    BASE_DIR / "media"
 ]
 
 WSGI_APPLICATION = 'proj.wsgi.application'

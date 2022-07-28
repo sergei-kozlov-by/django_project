@@ -135,7 +135,7 @@ class BookList(generic.ListView):
 class BookDetail(generic.DetailView):
     template_name = "handbook/book_view.html"
     model = models.Book
-
+    
 class BookAdd(generic.CreateView):
     template_name = "handbook/item_add.html"
     model = models.Book
