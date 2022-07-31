@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 from . import local_vars
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,14 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
-
-INSTALLED_APPS += [
-    'handbook',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_bootstrap_icons',
     'import_export',
+]
+
+INSTALLED_APPS += [
+    'handbook',
+    'book',
+    'user_app',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'
@@ -79,8 +82,10 @@ TEMPLATES = [
     },
 ]
 
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    BASE_DIR / "media", 
 ]
 
 WSGI_APPLICATION = 'proj.wsgi.application'

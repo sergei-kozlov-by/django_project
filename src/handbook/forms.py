@@ -23,7 +23,3 @@ class PublisherAddForm(ModelForm):
         model = models.Publisher
         fields = "__all__"
 
-class BookAddForm(ModelForm):
-    class Meta:
-        model = models.Book
-        fields = "__all__"

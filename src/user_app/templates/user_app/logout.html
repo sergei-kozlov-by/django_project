@@ -1,0 +1,9 @@
+{% extends "login_base.html" %}
+{% load static %}
+{% block title %} Login Page{% endblock title %}
+{% block header %}{% endblock header %}   
+{% block body %}
+<h1>Logged out</h1>
+<p>Thanks for spending some quality time with the web site today.</p>
+<a href="{% url 'user_app:login' %}">Log in again</a>
+{% endblock body %}   

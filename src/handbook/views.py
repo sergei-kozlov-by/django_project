@@ -3,18 +3,10 @@ from django.urls import reverse_lazy
 from django.views import generic
 from . import models, forms
 
-class HomePage(generic.TemplateView):
-    template_name = "handbook/home.html"
-
-    def get_context_data(self, *args, **kwargs):
-        context =  super().get_context_data(*args, **kwargs)
-        context['today'] = datetime.now().date
-        context['book_list'] = models.Book.objects.all()[:10]
-        return context
-
 class AuthorList(generic.ListView):
     template_name = "handbook/author_list.html"
     model = models.Author
+    paginate_by = 20
 
 class AuthorDetail(generic.DetailView):
     template_name = "handbook/item_view.html"
@@ -44,6 +36,7 @@ class AuthorEdit(generic.UpdateView):
 class SerieList(generic.ListView):
     template_name = "handbook/serie_list.html"
     model = models.Serie
+    paginate_by = 20
 
 class SerieDetail(generic.DetailView):
     template_name = "handbook/item_view.html"
@@ -73,6 +66,7 @@ class SerieEdit(generic.UpdateView):
 class GenreList(generic.ListView):
     template_name = "handbook/genre_list.html"
     model = models.Genre
+    paginate_by = 20
 
 class GenreDetail(generic.DetailView):
     template_name = "handbook/item_view.html"
@@ -102,6 +96,7 @@ class GenreEdit(generic.UpdateView):
 class PublisherList(generic.ListView):
     template_name = "handbook/publisher_list.html"
     model = models.Publisher
+    paginate_by = 20
 
 class PublisherDetail(generic.DetailView):
     template_name = "handbook/item_view.html"
@@ -127,32 +122,3 @@ class PublisherEdit(generic.UpdateView):
 
     def get_success_url(self) -> str:
         return reverse_lazy("hb:publisher-view", kwargs={'pk' : self.object.pk})
-
-class BookList(generic.ListView):
-    template_name = "handbook/book_list.html"
-    model = models.Book
-
-class BookDetail(generic.DetailView):
-    template_name = "handbook/book_view.html"
-    model = models.Book
-    
-class BookAdd(generic.CreateView):
-    template_name = "handbook/item_add.html"
-    model = models.Book
-    form_class = forms.BookAddForm
-
-    def get_success_url(self) -> str:
-        return reverse_lazy("hb:book-view", kwargs={'pk' : self.object.pk})
-
-class BookDelete(generic.DeleteView):
-    template_name = "handbook/item_delete.html"
-    model = models.Book
-    success_url = reverse_lazy("hb:book-list")
-
-class BookEdit(generic.UpdateView):
-    template_name = "handbook/item_edit.html"
-    model = models.Book
-    form_class = forms.BookAddForm
-
-    def get_success_url(self) -> str:
-        return reverse_lazy("hb:book-view", kwargs={'pk' : self.object.pk})

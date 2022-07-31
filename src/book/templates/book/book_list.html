@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} Item list {% endblock title %}   
-{% block header %}Item list{% endblock header %}
+{% block title %} Book list {% endblock title %}   
+{% block header %}Book list{% endblock header %}
 {% block body %}
     <table class="table table-striped table-hover">
         <thead>
@@ -15,11 +15,12 @@
             {% for row in object_list %}
             <tr>
                 <td>{{ row.pk }}</td>
-                <td><a href="{% url 'hb:book-view' row.pk %}"> {{ row.name }}</td>
-                <td><a href="{% url 'hb:book-edit' row.pk %}"> <i class="bi bi-pencil-square"></i>Edit<a href="{% url 'hb:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
+                <td><a href="{% url 'book:book-view' row.pk %}"> {{ row.name }}</td>
+                <td><a href="{% url 'book:book-edit' row.pk %}"> <i class="bi bi-pencil-square"></i>Edit<a href="{% url 'book:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <br><a href="{% url 'hb:book-add' %}"> <button type="button" class="btn btn-primary">Add book</button>
+{% include "pagination.html" %}
+    <br><a href="{% url 'book:book-add' %}"> <button type="button" class="btn btn-primary">Add book</button>
 {% endblock body %}

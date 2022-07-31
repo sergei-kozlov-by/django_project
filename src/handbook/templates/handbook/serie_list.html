@@ -21,5 +21,6 @@
             {% endfor %}
         </tbody>
     </table>
+{% include "pagination.html" %}
     <br><a href="{% url 'hb:serie-add' %}"> <button type="button" class="btn btn-primary">Add serie</button>
 {% endblock body %}

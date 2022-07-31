@@ -1,0 +1,25 @@
+{% if is_paginated %}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">
+                Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} results
+            </div>
+        </div>
+        <div class="col-sm-4>
+            <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
+                <ul class="pagination">
+                    <div>
+                        <span>
+                          {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                          {% endif %}
+                          <span>
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                          </span>
+                          {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                          {% endif %}
+                        </span>
+                      </div>
+                    </div>
+{% endif %}

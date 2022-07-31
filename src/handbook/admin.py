@@ -35,12 +35,6 @@ class SerieResource(resources.ModelResource):
 class SerieAdmin(ImportExportModelAdmin):
     resource_class = SerieResource
 
-class BookResource(resources.ModelResource):
-    class Meta:
-        model = models.Book
-class BookAdmin(ImportExportModelAdmin):
-    resource_class = BookResource
-    #list_display = (field.name for field in models.Book._meta.fields if field.name != "pk")
     
 
     
@@ -49,5 +43,5 @@ admin.site.register(models.Author, AuthorAdmin)
 admin.site.register(models.Serie, SerieAdmin)
 admin.site.register(models.Genre, GenreAdmin)
 admin.site.register(models.Publisher, PublisherAdmin)
-admin.site.register(models.Book, BookAdmin)
+
 

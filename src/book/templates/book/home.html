@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %} Home Page{% endblock title %}
 {% block header %}{% endblock header %}   
 {% block body %}
 <div class="row row-cols-3 row-cols-md-3 g-4">
 {% for book in book_list %}
 <div class="card" style="width: 14rem;">
-    <img src="/static/book.jpg" class="card-img-top" alt="...">
+    <img src="{% static '/Book.jpg' %}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"><a href="{% url 'hb:book-view' book.pk %}">{{book.name}}</a></h5>
+      <h5 class="card-title"><a href="{% url 'book:book-view' book.pk %}">{{book.name}}</a></h5>
       <p class="card-text">Author: {% for author in book.author.all %}{{author.name}}{%endfor%}</p>
       <p class="card-text">Genre: {% for genre in book.genre.all %}{{genre.name}}{%endfor%}</p>
       <p class="card-text">Publisher: {{ book.publisher }}</p>
