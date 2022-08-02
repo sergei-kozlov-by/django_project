@@ -1,24 +1,10 @@
-from django.shortcuts import render
-from django.contrib.auth import login, authenticate, logout
-from django.http import HttpResponseRedirect
-from requests import request
+from django.contrib.auth import views as auth_views
+from django.urls import reverse_lazy
 
-def login_view(request):
-    if request.method == "GET":
-        return render(request, template_name="user_app/login.html")
-    elif request.method == "POST":
-        username = request.POST.get('user')
-        password = request.POST.get('password')
-        print(username, password)
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            next = request.GET.get('next')
-            if next is not None:
-               return HttpResponseRedirect("next")
-            return HttpResponseRedirect("/")  
-        return HttpResponseRedirect("/auth/login/")
+class LoginView(auth_views.LoginView):
+    template_name = "user_app/login.html"
+    next_page = "/"
 
-def logout_view(request):
-    logout(request)
-    return render(request, template_name="user_app/logout.html")
+class LogoutView(auth_views.LogoutView):
+    template_name = "user_app/logout.html"
+

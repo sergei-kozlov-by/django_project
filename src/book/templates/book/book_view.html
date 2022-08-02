@@ -3,23 +3,29 @@
 {% block title %} Book: {{ object }} {% endblock title %}   
 {% block header %}{{ object }}{% endblock header %}
 {% block body %} 
-        <b>Photo:</b> {{ object.photo }}<br>
-        <b>Price:</b> {{ object.price }}<br>
-        <b>Author:</b> {% for author in object.author.all %}{{author.name}}{%endfor%}<br>
-        <b>Serie:</b> {{ object.serie }}<br>
-        <b>Genre: </b>{% for genre in object.genre.all %}{{genre.name}}{%endfor%}<br>
-        <b>Year:</b> {{ object.year}}<br>
-        <b>Pages:</b> {{ object.pages }}<br>
-        <b>Blinding:</b> {{ object.blinding }}<br>
-        <b>Format:</b> {{ object.format }}<br>
-        <b>ISBN:</b> {{ object.isbn }}<br>
-        <b>Weight:</b> {{ object.weight }}<br>
-        <b>Age of restrictions:</b> {{ object.age_restrictions }}<br>
-        <b>Publisher:</b> {{ object.publisher }}<br>
-        <b>Quantity in stock:</b> {{ object.quantity_in_stock }}<br>
-        <b>Active for order:</b> {{ object.active }}<br>
-        <b>Rating:</b> {{ object.rating }}<br>
-        <b>Date of entry:</b> {{ object.date_of_entry }}<br>
-        <b>Date of last modified:</b> {{ object.date_of_modified }}<br>
-        <b>Description:</b> {{ object.description }}<br>
+        <div class="card" style="width: 18rem;">
+        <img src="{{ object.photo.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{object.name}}</h5>
+          <p class="card-text">{{object.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Author: {% for author in object.author.all %}{{author.name}}{%endfor%}</li>
+          <li class="list-group-item">Serie: {{ object.serie }}</li>
+          <li class="list-group-item">Genre: {% for genre in object.genre.all %}{{genre.name}}{%endfor%}</li>
+          <li class="list-group-item">Year: {{ object.year}}</li>
+          <li class="list-group-item">Pages: {{ object.pages }}</li>
+          <li class="list-group-item">Format: {{ object.format }}</li>
+          <li class="list-group-item">ISBN: {{ object.isbn }}</li>
+          <li class="list-group-item">Weight: {{ object.weight }}</li>
+          <li class="list-group-item">Age of restrictions: {{ object.age_restrictions }}</li>
+          <li class="list-group-item">Publisher: {{ object.publisher }}</li>
+          <li class="list-group-item">Quantity in stock: {{ object.quantity_in_stock }}</li>
+          <li class="list-group-item">Rating: {{ object.rating }}</li>
+        </ul>
+        <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
 {% endblock body %}  
