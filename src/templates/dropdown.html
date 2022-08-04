@@ -1,20 +1,14 @@
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Profile
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li> <a class="nav-link disabled" href="#">{% if user.is_authenticated %}{{ user }}{% endif %}</a></li>
-            {% if user.is_authenticated %}
-            <li><a class="dropdown-item" href="{% url 'user_app:logout' %}">{% if user.is_authenticated %}{% endif %} Sign out</a></li>
-            {% else %}
-            <li><a class="dropdown-item" href="{% url 'user_app:login' %}">Sign in</a></li>
-            {% endif %}
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Profile
+        </a>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      {% if user.is_authenticated %}
+      <li> <a class="nav-link disabled"  href="#">{{ user }}</a></li>
+      <li><a class="dropdown-item" href="{% url 'user_app:logout' %}">Sign out</a></li>
+    {% else %}
+      <li><a class="dropdown-item" href="{% url 'user_app:login' %}">Sign in</a></li>
+    {% endif %}
+    </ul>
+    </ul>

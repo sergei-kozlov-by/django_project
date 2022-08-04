@@ -2,6 +2,7 @@ from datetime import datetime
 from django.urls import reverse_lazy
 from django.views import generic
 from . import models, forms
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class HomePage(generic.TemplateView):
     template_name = "book/home.html"
@@ -20,23 +21,29 @@ class BookDetail(generic.DetailView):
     template_name = "book/book_view.html"
     model = models.Book
     
-class BookAdd(generic.CreateView):
+class BookAdd(PermissionRequiredMixin, generic.CreateView):
     template_name = "book/book_add.html"
     model = models.Book
     form_class = forms.BookAddForm
+    permission_required = ('book:book-add')
+    login_url = "user_app:login"
 
     def get_success_url(self) -> str:
         return reverse_lazy("book:book-view", kwargs={'pk' : self.object.pk})
 
-class BookDelete(generic.DeleteView):
+class BookDelete(PermissionRequiredMixin, generic.DeleteView):
     template_name = "book/book_delete.html"
     model = models.Book
     success_url = reverse_lazy("book:book-list")
+    permission_required = ('book:book-delete')
+    login_url = "user_app:login"
 
-class BookEdit(generic.UpdateView):
+class BookEdit(PermissionRequiredMixin, generic.UpdateView):
     template_name = "book/book_edit.html"
     model = models.Book
     form_class = forms.BookAddForm
+    permission_required = ('book:book-edit')
+    login_url = "user_app:login"
 
     def get_success_url(self) -> str:
         return reverse_lazy("book:book-view", kwargs={'pk' : self.object.pk})

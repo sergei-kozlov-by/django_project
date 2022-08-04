@@ -3,10 +3,14 @@
 {% block title %} Home Page{% endblock title %}
 {% block header %}{% endblock header %}   
 {% block body %}
-<div class="row row-cols-3 row-cols-md-3 g-4">
-{% for book in book_list %}
-<div class="card" style="width: 14rem;">
-    <img src="{{ object.photo.url }}" class="card-img-top" alt="...">
+  <div class="row row-cols-3 row-cols-md-3 g-4">
+     {% for book in book_list %}
+  <div class="card" style="width: 14rem;">
+    {% if book.photo %}
+    <img src="{{ book.photo.url }}" class="card-img-top" alt="...">
+    {% else %}
+    <img src="{% static '/no-image.jpg' %}" class="card-img-top" alt="...">
+    {% endif %}
     <div class="card-body">
       <h5 class="card-title"><a href="{% url 'book:book-view' book.pk %}">{{book.name}}</a></h5>
       <p class="card-text">Author: {% for author in book.author.all %}{{author.name}}{%endfor%}</p>
