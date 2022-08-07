@@ -18,19 +18,23 @@
           <li class="list-group-item">Author: {% for author in object.author.all %}{{author.name}}{%endfor%}</li>
           <li class="list-group-item">Serie: {{ object.serie }}</li>
           <li class="list-group-item">Genre: {% for genre in object.genre.all %}{{genre.name}}{%endfor%}</li>
-          <li class="list-group-item">Year: {{ object.year}}</li>
-          <li class="list-group-item">Pages: {{ object.pages }}</li>
-          <li class="list-group-item">Format: {{ object.format }}</li>
-          <li class="list-group-item">ISBN: {{ object.isbn }}</li>
-          <li class="list-group-item">Weight: {{ object.weight }}</li>
-          <li class="list-group-item">Age of restrictions: {{ object.age_restrictions }}</li>
           <li class="list-group-item">Publisher: {{ object.publisher }}</li>
           <li class="list-group-item">Quantity in stock: {{ object.quantity_in_stock }}</li>
           <li class="list-group-item">Rating: {{ object.rating }}</li>
+          <li class="list-group-item">Price: {{ object.price }} $</li>
         </ul>
         <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
+          <form action="{% url 'orders:add-to-cart'%}" method="get">
+            <input type="hidden" name="book_id" value="{{ object.pk }}">
+            <div class="form-group row">
+              <div class="col-sm-8">
+                <input type="submit" class="btn btn-primary"value="Add to cart" id="add_to_cart">
+              </div>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" name="quantity" min="1" max="{{object.quantity_in_stock}}" step="1" value="1">
+              </div>
+            </div>   
+          </form>
+          </div>
       </div>
 {% endblock body %}  

@@ -25,6 +25,7 @@ urlpatterns = [
     path('hb/', include('handbook.urls', namespace='hb')),
     path('book/', include('book.urls', namespace='book')),
     path('auth/', include('user_app.urls', namespace='user_app')),
+    path('orders/', include('orders.urls', namespace='orders')),
 ] 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

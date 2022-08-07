@@ -13,8 +13,22 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'book:book-list' %}">Book's catalogue</a>
           </li>
+          {% if user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'hb:author-list' %}">Author List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'hb:serie-list' %}">Serie List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'hb:genre-list' %}">Genre List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'hb:publisher-list' %}">Publisher List</a>
+          </li>
+          {% endif %}
           {% for group in user.groups.all %}
-          {%  if 'Managers' == group.name or is.user_superuser %}
+          {%  if 'Managers' == group.name %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'hb:author-list' %}">Author List</a>
           </li>

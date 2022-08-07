@@ -10,8 +10,11 @@
                 <th scope="col">#</th>
                 <th scope="col">Photo</th>
                 <th scope="col">Name</th>
+                {% if user.is_superuser %}
+                <th scope="col">Actions</th>
+                {% endif %}
                 {% for group in user.groups.all %}
-                {%  if 'Managers' == group.name or is.user_superuser %}   
+                {%  if 'Managers' == group.name %}   
                 <th scope="col">Actions</th>
                 {% endif %}
                 {% endfor %}
@@ -27,8 +30,11 @@
                     <img src="{% static '/no-image.jpg' %}"  height="80" width="45" alt="...">
                     {% endif %}</td>
                     <td><a href="{% url 'book:book-view' row.pk %}"> {{ row.name }}</td>
+                    {% if user.is_superuser %}
+                    <td><a href="{% url 'book:book-edit' row.pk %}"><i class="bi bi-pencil-square"></i>Edit<a href="{% url 'book:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
+                    {% endif %}
                     {% for group in user.groups.all %}
-                    {%  if 'Managers' == group.name or is.user_superuser %}
+                    {%  if 'Managers' == group.name %}
                     <td><a href="{% url 'book:book-edit' row.pk %}"><i class="bi bi-pencil-square"></i>Edit<a href="{% url 'book:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
                     {% endif %}
                     {% endfor %}
