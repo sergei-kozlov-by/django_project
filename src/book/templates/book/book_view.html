@@ -4,7 +4,7 @@
 {% block title %} Book: {{ object }} {% endblock title %}   
 {% block header %}{{ object }}{% endblock header %}
 {% block body %} 
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 14rem;">
         {% if object.photo %}
         <img src="{{ object.photo.url }}" class="card-img-top" alt="...">
         {% else %}
@@ -28,10 +28,10 @@
             {% csrf_token %}
             <input type="hidden" name="book_id" value="{{ object.pk }}">
             <div class="form-group row">
-              <div class="col-sm-8">
+              <div class="col-sm-7">
                 <input type="submit" class="btn btn-primary"value="Add to cart" id="add_to_cart">
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-5">
                 <input type="number" class="form-control" name="quantity" min="1" max="{{object.quantity_in_stock}}" step="1" value="1">
               </div>
             </div>   

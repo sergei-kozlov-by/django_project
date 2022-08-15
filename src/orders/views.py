@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.views import generic
-from . forms import BookInCartAddForm, CartAddForm
+from . forms import BookInCartAddForm, CartAddForm, OrderAddForm
 from . models import BookInCart, Cart, Order
 from book.models import Book
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 
@@ -88,6 +89,31 @@ class AddToCart(generic.UpdateView):
                 book_in_cart.save()
         return cart
 
+class OrderList(PermissionRequiredMixin, generic.ListView):
+    template_name = "orders/order_list.html"
+    model = Order
+    paginate_by = 20
+    permission_required = ('orders:order-edit')
+    login_url = "user_app:login"
+class OrderView(PermissionRequiredMixin, generic.DetailView):
+    template_name = "orders/order_view.html"
+    model = Order
+    permission_required = ('orders:order-edit')
+    login_url = "user_app:login"
+
+class OrderEdit(PermissionRequiredMixin, generic.UpdateView):
+    template_name = "orders/order_edit.html"
+    model = Order
+    form_class = OrderAddForm
+    permission_required = ('orders:order-edit')
+    login_url = "user_app:login"
+
+class OrderDelete(PermissionRequiredMixin, generic.DeleteView):
+    template_name = "orders/order_delete.html"
+    model = Order
+    success_url = reverse_lazy("orders:order-list")
+    permission_required = ('orders:order-delete')
+    login_url = "user_app:login"
     
 
  

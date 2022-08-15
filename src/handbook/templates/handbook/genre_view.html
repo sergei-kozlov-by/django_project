@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Genre: {{ object.name }} {% endblock title %}   
+{% block header %}{{ object.name }}{% endblock header %}
+{% block body %} 
+        <b>Description:</b> {{ object.description }}<br>
+        {% if object.genre.all %}
+        <b>List of books:</b> {% for book in object.genre.all %} <a href="{% url 'book:book-view' book.pk %}">{{ book.name }}<br>{% endfor %}
+        {% endif %}
+{% endblock body %}  

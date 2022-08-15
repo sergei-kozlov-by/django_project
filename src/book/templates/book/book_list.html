@@ -43,5 +43,12 @@
         </tbody>
     </table>
 {% include "pagination.html" %}
+{% if user.is_superuser %}
+<br><a href="{% url 'book:book-add' %}"> <button type="button" class="btn btn-primary">Add book</button>
+{% endif %}
+{% for group in user.groups.all %}
+{%  if 'Managers' == group.name %}
     <br><a href="{% url 'book:book-add' %}"> <button type="button" class="btn btn-primary">Add book</button>
+{% endif %}
+{% endfor %}
 {% endblock body %}

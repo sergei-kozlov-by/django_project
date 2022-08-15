@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} Item edit: {{ object }} {% endblock title %}   
-{% block header %}Edit item: {{ object }}{% endblock header %}
+{% block title %} Delete serie: {{ object.name }} {% endblock title %}   
+{% block header %}Are you sure? You are about to delete serie: {{ object.name }}{% endblock header %}
 {% block body %} 
     <form action="" method="post">
         {% csrf_token %}

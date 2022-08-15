@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Author: {{ object.name }} {% endblock title %}   
+{% block header %}{{ object.name }}{% endblock header %}
+{% block body %} 
+        <b>Description:</b> {{ object.description }}<br>
+        {% if object.author.all %}
+        <b>List of books:</b> {% for book in object.author.all %} <a href="{% url 'book:book-view' book.pk %}">{{ book.name }}<br>{% endfor %}
+        {% endif %}
+{% endblock body %}  

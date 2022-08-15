@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} Item add {% endblock title %}   
-{% block header %}Add a item{% endblock header %}
+{% block title %} Publisher edit: {{ object.name }} {% endblock title %}   
+{% block header %}Edit publisher: {{ object.name }}{% endblock header %}
 {% block body %} 
     <form action="" method="post">
         {% csrf_token %}
