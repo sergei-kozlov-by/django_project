@@ -5,61 +5,58 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'book:book-list' %}">Book's catalogue</a>
-          </li>
-          {% if user.is_superuser %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:author-list' %}">Author List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:serie-list' %}">Serie List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:genre-list' %}">Genre List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:publisher-list' %}">Publisher List</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'book:book-list' %}">Book's catalogue</a>
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:author-list' %}">Author List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:serie-list' %}">Serie List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:genre-list' %}">Genre List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:publisher-list' %}">Publisher List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'orders:order-list' %}">Order List</a>
+            </li>
+            {% endif %}
+            {% for group in user.groups.all %}
+            {%  if 'Managers' == group.name %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:author-list' %}">Author List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:serie-list' %}">Serie List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:genre-list' %}">Genre List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hb:publisher-list' %}">Publisher List</a>
+            </li>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'orders:order-list' %}">Order List</a>
           </li>
           {% endif %}
-          {% for group in user.groups.all %}
-          {%  if 'Managers' == group.name %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:author-list' %}">Author List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:serie-list' %}">Serie List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:genre-list' %}">Genre List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'hb:publisher-list' %}">Publisher List</a>
-          </li>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'orders:order-list' %}">Order List</a>
-        </li>
-          {% endif %}
           {% endfor %}
           <li class="nav-item">
             <a class="nav-link disabled">Disabled</a>
           </li>
-        </ul>
-          {% comment %} <form class="d-flex" role="search"> {% endcomment %}
-          {% comment %} <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> {% endcomment %}
+          </ul>
           <a href="{% url 'book:book-search' %}"><button class="btn btn-outline-success" type="submit">Search</button></a>
-          {% comment %} </form> {% endcomment %}
           {% include 'dropdown.html' %}
-      </div>
+        </div>
     </div>
   </nav>
 </header>

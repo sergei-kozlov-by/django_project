@@ -1,15 +1,13 @@
-    <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Profile
-        </a>
-    <ul class="dropdown-menu dropdown-menu-dark">
-      {% if user.is_authenticated %}
-      <li><a class="dropdown-item disabled">{{ user }}</a></li>
-      <li><a class="dropdown-item" href="{% url 'user_app:logout' %}">Sign out</a></li>
+<ul class="navbar-nav">
+  <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+  <ul class="dropdown-menu dropdown-menu-dark">
+    {% if user.is_authenticated %}
+    <li><a class="dropdown-item disabled">{{ user }}</a></li>
+    <li><a class="dropdown-item" href="{% url 'user_app:logout' %}">Sign out</a></li>
     {% else %}
-      <li><a class="dropdown-item" href="{% url 'user_app:login' %}">Sign in</a></li>
+    <li><a class="dropdown-item" href="{% url 'user_app:login' %}">Sign in</a></li>
     {% endif %}
-    <li><a class="dropdown-item" href="{% url 'orders:add-to-cart' %}"><i class="bi bi-cart"></i> Cart</a></li>
-    </ul>
-    </ul>
+    <li><a class="dropdown-item" href="{% url 'orders:add-to-cart' %}"><i class="bi bi-cart"></i>Cart</a></li>
+  </ul>
+</ul>

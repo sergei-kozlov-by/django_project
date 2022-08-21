@@ -1,6 +1,4 @@
-from msilib.schema import Class
 from django.db import models
-
 
 class Book(models.Model):
     name = models.CharField(
@@ -84,7 +82,6 @@ class Book(models.Model):
         verbose_name="Publisher",
         related_name="publisher"
     )
-    
     quantity_in_stock = models.IntegerField(
         verbose_name="Quantity in stock",
         blank=True,

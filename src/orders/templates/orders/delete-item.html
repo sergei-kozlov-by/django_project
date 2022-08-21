@@ -3,9 +3,8 @@
 {% block title %}Cart{% endblock title %}
 {% block header %}{% endblock header %}   
 {% block body %}
-<form action="" method="post">
+    <form action="" method="post">
     {% csrf_token %}
     <input type="submit" class="btn btn-danger" value="Are you sure?">
-</form>
-
+    </form>
 {% endblock body %}   

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} Publisher: {{ object.name }} {% endblock title %}   
+{% block title %}Publisher: {{ object.name }}{% endblock title %}   
 {% block header %}{{ object.name }}{% endblock header %}
 {% block body %} 
         <b>Description:</b> {{ object.description }}<br>
         {% if object.publisher.all %}
-        <b>List of publishers:</b> {% for book in object.publisher.all %} <a href="{% url 'book:book-view' book.pk %}">{{ book.name }}<br>{% endfor %}
+        <b>List of publishers:</b> {% for book in object.publisher.all %}<a href="{% url 'book:book-view' book.pk %}">{{ book.name }}<br>{% endfor %}
         {% endif %}
 {% endblock body %}  

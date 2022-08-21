@@ -10,6 +10,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Cart</th>
                 <th scope="col">Client Name</th>
+                <th scope="col">Order status</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -18,7 +19,8 @@
             <tr>
                 <td><a href="{% url 'orders:order-view' row.pk %}">{{ row.pk }}</td>
                 <td><a href="{% url 'orders:order-view' row.pk %}">{{ row.cart }}</td>
-                <td><a href="{% url 'orders:order-view' row.pk %}">{{ row.name }}</td>            
+                <td><a href="{% url 'orders:order-view' row.pk %}">{{ row.name }}</td>
+                <td><a href="{% url 'orders:order-view' row.pk %}">{{ row.status }}</td>            
                 <td><a href="{% url 'orders:order-edit' row.pk %}"><i class="bi bi-pencil-square"></i>Edit<a href="{% url 'orders:order-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
                 </tr>
             {% endfor %}

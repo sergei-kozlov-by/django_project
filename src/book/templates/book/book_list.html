@@ -1,46 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %} Book list {% endblock title %}   
+{% block title %}Book list{% endblock title %}   
 {% block header %}Book list{% endblock header %}
 {% block body %}
     <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Photo</th>
-                <th scope="col">Name</th>
-                {% if user.is_superuser %}
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            {% if user.is_superuser %}
                 <th scope="col">Actions</th>
-                {% endif %}
-                {% for group in user.groups.all %}
-                {%  if 'Managers' == group.name %}   
+            {% endif %}
+            {% for group in user.groups.all %}
+            {%  if 'Managers' == group.name %}   
                 <th scope="col">Actions</th>
-                {% endif %}
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in object_list %}
-            <tr>
-                <td>{{ row.pk }}</td>
-                <td>{% if row.photo %}
-                    <img src="{{ row.photo.url }}" height="80" width="45" alt="...">
-                    {% else %}
-                    <img src="{% static '/no-image.jpg' %}"  height="80" width="45" alt="...">
-                    {% endif %}</td>
-                    <td><a href="{% url 'book:book-view' row.pk %}"> {{ row.name }}</td>
-                    {% if user.is_superuser %}
-                    <td><a href="{% url 'book:book-edit' row.pk %}"><i class="bi bi-pencil-square"></i>Edit<a href="{% url 'book:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
-                    {% endif %}
-                    {% for group in user.groups.all %}
-                    {%  if 'Managers' == group.name %}
-                    <td><a href="{% url 'book:book-edit' row.pk %}"><i class="bi bi-pencil-square"></i>Edit<a href="{% url 'book:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
-                    {% endif %}
-                    {% endfor %}
-            </tr>
+            {% endif %}
             {% endfor %}
-        </tbody>
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in object_list %}
+        <tr>
+        <td>{{ row.pk }}</td>
+        <td>{% if row.photo %}
+        <a href="{% url 'book:book-view' row.pk %}"><img src="{{ row.photo.url }}" height="80" width="45" alt="..."></a>
+        {% else %}
+        <a href="{% url 'book:book-view' row.pk %}"><img src="{% static '/no-image.jpg' %}"  height="80" width="45" alt="..."></a>
+        {% endif %}</td>
+        <td><a href="{% url 'book:book-view' row.pk %}"> {{ row.name }}</td>
+        <td>{{ row.price }} $</td>
+        {% if user.is_superuser %}
+        <td><a href="{% url 'book:book-edit' row.pk %}"><i class="bi bi-pencil-square"></i>Edit<a href="{% url 'book:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
+        {% endif %}
+        {% for group in user.groups.all %}
+        {%  if 'Managers' == group.name %}
+        <td><a href="{% url 'book:book-edit' row.pk %}"><i class="bi bi-pencil-square"></i>Edit<a href="{% url 'book:book-delete' row.pk %}"><i class="bi bi-trash3"></i>Delete</td>
+        {% endif %}
+        {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
     </table>
 {% include "pagination.html" %}
 {% if user.is_superuser %}
@@ -48,7 +50,7 @@
 {% endif %}
 {% for group in user.groups.all %}
 {%  if 'Managers' == group.name %}
-    <br><a href="{% url 'book:book-add' %}"> <button type="button" class="btn btn-primary">Add book</button>
+<br><a href="{% url 'book:book-add' %}"> <button type="button" class="btn btn-primary">Add book</button>
 {% endif %}
 {% endfor %}
 {% endblock body %}

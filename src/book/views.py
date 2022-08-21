@@ -1,9 +1,7 @@
-from urllib import request
 from django.urls import reverse_lazy
 from django.views import generic
 from . import models, forms
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import render
 
 class HomePage(generic.TemplateView):
     template_name = "book/home.html"
@@ -52,6 +50,7 @@ class BookEdit(PermissionRequiredMixin, generic.UpdateView):
 class BookSearch(generic.ListView):
     template_name = "book/book_search.html"
     model = models.Book
+
     def get_queryset(self, *args, **kwargs):
         q = self.request.GET.get('search_query')
         if q:
@@ -59,13 +58,9 @@ class BookSearch(generic.ListView):
         else:
             qs = []
         return qs
+        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         q = self.request.GET.get('search_query', '')
         context['search_query'] = q
         return context
-  
-        
-
-
-

@@ -14,6 +14,14 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         {% include 'style.html' %}
     </head>
+    <style>
+        body {
+            background: #000 url("{% static 'font.png' %}");
+            background-attachment: fixed;
+            background-repeat: repeat-y repeat-y; /* Изображение повторяется по горизонтали */
+           
+        }
+    </style>
     <body class="d-flex flex-column h-100">
         {% include 'nav-bar.html' %}
         <main class="flex-shrink-0">

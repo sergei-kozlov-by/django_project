@@ -32,7 +32,7 @@ class UpdateCart(generic.UpdateView):
     template_name = "orders/cart.html"
     model = BookInCart
     form_class = BookInCartAddForm
-    success_url = reverse_lazy("orders:update-cart")
+    success_url = reverse_lazy("orders:add-to-cart")
         
     def get_object(self, **kwargs):
         cart = get_cart(self)
@@ -93,12 +93,13 @@ class OrderList(PermissionRequiredMixin, generic.ListView):
     template_name = "orders/order_list.html"
     model = Order
     paginate_by = 20
-    permission_required = ('orders:order-edit')
+    permission_required = ('orders:order-list')
     login_url = "user_app:login"
+    
 class OrderView(PermissionRequiredMixin, generic.DetailView):
     template_name = "orders/order_view.html"
     model = Order
-    permission_required = ('orders:order-edit')
+    permission_required = ('orders:order-view')
     login_url = "user_app:login"
 
 class OrderEdit(PermissionRequiredMixin, generic.UpdateView):
@@ -107,6 +108,7 @@ class OrderEdit(PermissionRequiredMixin, generic.UpdateView):
     form_class = OrderAddForm
     permission_required = ('orders:order-edit')
     login_url = "user_app:login"
+    success_url = reverse_lazy("orders:order-list")
 
 class OrderDelete(PermissionRequiredMixin, generic.DeleteView):
     template_name = "orders/order_delete.html"

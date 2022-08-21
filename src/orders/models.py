@@ -1,9 +1,6 @@
-from statistics import mode
 from django.db import models
 from django.contrib.auth import get_user_model
 from book import models as book_models
-
-# Create your models here.
 
 user = get_user_model()
 
@@ -26,6 +23,7 @@ class Cart(models.Model):
         auto_now=True,
         editable=True
     )
+
     def total_price(self):
         total = 0
         for good in self.goods.all():
@@ -66,6 +64,15 @@ class BookInCart(models.Model):
         editable=True
     )
 
+class Status(models.Model):
+    name = models.TextField(
+        max_length=50,
+        verbose_name="Name",
+    )
+
+    def __str__(self) -> str:
+        return self.name
+
 class Order(models.Model):
     cart = models.ForeignKey(
         Cart,
@@ -73,6 +80,14 @@ class Order(models.Model):
         related_name="orders",
         verbose_name="Cart"           
     )
+    status = models.ForeignKey(
+        Status,
+        on_delete=models.PROTECT,
+        related_name="orders",
+        verbose_name="Status",
+        default=Status(pk=1)
+    )
+        
     name = models.TextField(
         max_length=50,
         verbose_name="Name",
@@ -112,4 +127,4 @@ class Order(models.Model):
         verbose_name="Updated",
         auto_now=True,
         editable=True
-    )
+    )    

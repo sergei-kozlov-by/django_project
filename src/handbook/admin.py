@@ -1,14 +1,6 @@
-from dataclasses import field, fields
 from django.contrib import admin
-
-from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
-from import_export.widgets import ForeignKeyWidget
 from import_export.admin import ImportExportModelAdmin
-
-
-# Register your models here.
-
 from handbook import models
 
 class AuthorResource(resources.ModelResource):
@@ -35,13 +27,7 @@ class SerieResource(resources.ModelResource):
 class SerieAdmin(ImportExportModelAdmin):
     resource_class = SerieResource
 
-    
-
-    
-
 admin.site.register(models.Author, AuthorAdmin)
 admin.site.register(models.Serie, SerieAdmin)
 admin.site.register(models.Genre, GenreAdmin)
 admin.site.register(models.Publisher, PublisherAdmin)
-
-

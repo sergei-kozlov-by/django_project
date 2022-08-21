@@ -1,9 +1,4 @@
-from msilib.schema import Class
-from pyexpat import model
-from unicodedata import name
 from django.db import models
-
-# Create your models here.
 
 class Author(models.Model):
     name = models.CharField(
@@ -59,5 +54,3 @@ class Publisher(models.Model):
     )
     def __str__(self) -> str:
         return self.name
-
-        

@@ -4,7 +4,7 @@
 {% block header %}Add a Genre{% endblock header %}
 {% block body %} 
     <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
+    {% csrf_token %}
+    {{ form|crispy }}
     <br><input type="submit" class="btn btn-primary">
 {% endblock body %}  

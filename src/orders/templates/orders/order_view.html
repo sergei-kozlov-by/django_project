@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %} Order: {{ object }} {% endblock title %}   
+{% block title %}Order: {{ object }} {% endblock title %}   
 {% block header %}{{ object }}{% endblock header %}
 {% block body %} 
-       <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name: {{ object.name }}</li>
-          <li class="list-group-item">Cart: {{ object.cart }}</li>
-          <li class="list-group-item">Books: {% for book in object.cart.goods.all %}{{book.book.name}} {{book.quantity}} pc.{%endfor%}</li>
-          <li class="list-group-item">Email: {{ object.email }}</li>
-          <li class="list-group-item">Phone: {{ object.phone }}</li>
-          <li class="list-group-item">Address: {{ object.address }}</li>
-          <li class="list-group-item">Comment: {{ object.comment }} $</li>
-        </ul>
-    </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Name: {{ object.name }}</li>
+    <li class="list-group-item">Cart: {{ object.cart }}</li>
+    <li class="list-group-item">Books: <br> {% for book in object.cart.goods.all %}{{book.book.name}} {{book.quantity}} pc. <br>{%endfor%}</li>
+    <li class="list-group-item">Status: {{ object.status }}</li>
+    <li class="list-group-item">Email: {{ object.email }}</li>
+    <li class="list-group-item">Phone: {{ object.phone }}</li>
+    <li class="list-group-item">Address: {{ object.address }}</li>
+    <li class="list-group-item">Comment: {{ object.comment }} $</li>
+  </ul>
 {% endblock body %}  

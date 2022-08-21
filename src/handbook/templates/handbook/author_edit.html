@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} Author edit: {{ object.name }} {% endblock title %}   
+{% block title %}Author edit: {{ object.name }} {% endblock title %}   
 {% block header %}Edit author: {{ object.name }}{% endblock header %}
 {% block body %} 
     <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
+    {% csrf_token %}
+    {{ form|crispy }}
     <br><input type="submit" class="btn btn-primary">
 {% endblock body %}  
