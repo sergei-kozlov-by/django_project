@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 
 class Book(models.Model):
     name = models.CharField(
@@ -92,10 +94,9 @@ class Book(models.Model):
         blank=True,
         null=True
     )
-    rating = models.SmallIntegerField(
-        verbose_name="Book's rating",
-        blank=True,
-        null=True
+    ratings = GenericRelation(
+        Rating,
+        related_query_name='books'
     )
     date_of_entry = models.DateField(
         verbose_name="Date of entry",

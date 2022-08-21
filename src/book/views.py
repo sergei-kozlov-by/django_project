@@ -1,14 +1,15 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from . import models, forms
+
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class HomePage(generic.TemplateView):
     template_name = "book/home.html"
-
+    
     def get_context_data(self, *args, **kwargs):
         context =  super().get_context_data(*args, **kwargs)
-        context['book_list'] = models.Book.objects.all()[:10]
+        context['book_list'] = models.Book.objects.filter(ratings__isnull=False).order_by('ratings__average')[:10]
         return context
 
 class BookList(generic.ListView):

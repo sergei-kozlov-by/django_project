@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load ratings %}
 {% load crispy_forms_tags %}
 {% block title %}Book: {{ object }} {% endblock title %}   
 {% block header %}{{ object }}{% endblock header %}
@@ -24,8 +25,8 @@
           <li class="list-group-item">Genre: {% for genre in object.genre.all %}<a href="{% url 'hb:genre-view' genre.pk %}">{{genre.name}}</a>{%endfor%}</li>
           <li class="list-group-item">Publisher: <a href="{% url 'hb:publisher-view' object.publisher.pk %}">{{ object.publisher }}</a></li>
           <li class="list-group-item">Quantity in stock: {{ object.quantity_in_stock }}</li>
-          <li class="list-group-item">Rating: {{ object.rating }}</li>
           <li class="list-group-item">Price: {{ object.price }} $</li>
+          <li class="list-group-item">{% ratings object %}</li>     
         </ul>
         <form action="{% url 'orders:add-to-cart' %}" method="post">
             {% csrf_token %}

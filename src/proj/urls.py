@@ -26,6 +26,7 @@ urlpatterns = [
     path('book/', include('book.urls', namespace='book')),
     path('auth/', include('user_app.urls', namespace='user_app')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ] 
 
 if settings.DEBUG:

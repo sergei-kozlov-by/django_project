@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_bootstrap_icons',
     'import_export',
+    'star_ratings'
 ]
 
 INSTALLED_APPS += [
