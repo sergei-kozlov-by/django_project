@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.views import generic
 from . forms import BookInCartAddForm, CartAddForm, OrderAddForm
-from . models import BookInCart, Cart, Order
+from . models import BookInCart, Cart, Order, Status
 from book.models import Book
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -47,6 +47,7 @@ class UpdateCart(generic.UpdateView):
         if action_type == 'Order':
             order = Order.objects.create(
             cart = book_in_cart.cart,
+            status = Status(pk=1),
             name = self.request.POST.get('name'),
             email = self.request.POST.get('email'),
             phone = self.request.POST.get('phone'),

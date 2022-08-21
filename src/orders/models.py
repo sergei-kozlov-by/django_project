@@ -85,7 +85,6 @@ class Order(models.Model):
         on_delete=models.PROTECT,
         related_name="orders",
         verbose_name="Status",
-        default=Status(pk=1)
     )
         
     name = models.TextField(
